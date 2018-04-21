@@ -16,7 +16,10 @@ namespace PhoenixLauncher
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PhoenixLauncher());
+
+            PhoenixLauncher app = new PhoenixLauncher();
+
+            Application.Run(app);
         }
     }
 }
