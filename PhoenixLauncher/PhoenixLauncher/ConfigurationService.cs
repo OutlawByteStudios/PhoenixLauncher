@@ -24,7 +24,13 @@ namespace PhoenixLauncher
 
         static string get(string key)
         {
-            return System.Configuration.ConfigurationManager.AppSettings[key];
+            try {
+                return System.Configuration.ConfigurationManager.AppSettings[key];
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

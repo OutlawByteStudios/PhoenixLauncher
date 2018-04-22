@@ -110,6 +110,7 @@
             this.buttonMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.buttonMenu.Location = new System.Drawing.Point(553, 3);
             this.buttonMenu.Name = "buttonMenu";
+            this.buttonMenu.Padding = new System.Windows.Forms.Padding(64, 0, 0, 0);
             this.buttonMenu.Size = new System.Drawing.Size(183, 40);
             this.buttonMenu.TabIndex = 0;
             this.buttonMenu.Text = "Menu";

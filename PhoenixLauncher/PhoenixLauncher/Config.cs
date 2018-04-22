@@ -47,14 +47,16 @@ namespace PhoenixLauncher
 
 
             //HTTP 1.0 /GET
-            public const string FILESLAVE_HASHES_FILEPOINTER = "";
+            public const string FILESLAVE_HASHES_FILEPOINTER = "/filelis";
             //HTTP 1.0 /GET
-            public const string FILESLAVE_DOWNLOAD = "";
+            public const string FILESLAVE_DOWNLOAD = "/file";
 
             //HTTP 1.0 /GET
-            public const string LAUNCHER_VERSION = "";
+            public const string LAUNCHER_VERSION = "/launcher/version";
             //HTTP 1.0 /GET
-            public const string AUTOUPDATER_DOWNLOAD = "";
+            public const string LAUNCHER_DOWNLOAD = "/launcher/download";
+            //HTTP 1.0 /GET
+            public const string AUTOUPDATER_DOWNLOAD = "/launcher/updater";
         }
     }
 

@@ -19,8 +19,15 @@ namespace PhoenixLauncher
 
             MainForm.Headline.Text = MainForm.Headline.Text + ' ' + Config.Launcher.VERSION;
 
-            this.welcomeAsync();
+            this.routine();
 
+        }
+
+        private async void routine()
+        {
+            await this.welcomeAsync();
+
+            await this.healthCheck();
         }
 
         private async Task welcomeAsync()
@@ -29,7 +36,7 @@ namespace PhoenixLauncher
             this.logger.system("Startup Routine");
 
             this.progress.setup();
-            this.progress.setMax(2);
+            this.progress.setMax(3);
 
             await this.phoenixClient.get(Config.API.URI + Config.API.VERSION + Config.API.REST_PING);
             dynamic result = this.JSON.DeserializeObject( this.phoenixClient.getResponse() );
@@ -40,6 +47,15 @@ namespace PhoenixLauncher
             result = this.JSON.DeserializeObject(this.phoenixClient.getResponse());
             this.logger.notify( result["message"] );
             this.progress.step();
+        }
+
+        private async Task healthCheck()
+        {
+            await this.phoenixClient.get(Config.API.URI + Config.API.VERSION + Config.API.LAUNCHER_VERSION);
+            dynamic result = this.JSON.DeserializeObject(this.phoenixClient.getResponse());
+            this.logger.notify(result["version"]);
+            this.progress.step();
+
         }
     }
 }
