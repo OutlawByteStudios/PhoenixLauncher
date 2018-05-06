@@ -5,7 +5,7 @@ namespace PhoenixLauncher
 {
     class ConfigurationService
     {
-        static void write(string key, string value)
+        public static void write(string key, string value)
         {
             var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var settings = configFile.AppSettings.Settings;
@@ -22,7 +22,7 @@ namespace PhoenixLauncher
             ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
         }
 
-        static string get(string key)
+        public static string get(string key)
         {
             try {
                 return System.Configuration.ConfigurationManager.AppSettings[key];

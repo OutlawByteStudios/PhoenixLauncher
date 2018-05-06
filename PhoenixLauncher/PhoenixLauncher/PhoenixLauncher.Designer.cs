@@ -37,15 +37,14 @@
             this.Console = new System.Windows.Forms.RichTextBox();
             this.menu = new System.Windows.Forms.Panel();
             this.buttonLogs = new System.Windows.Forms.Button();
-            this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonCheck = new System.Windows.Forms.Button();
             this.buttonConfig = new System.Windows.Forms.Button();
             this.configPanel = new System.Windows.Forms.Panel();
             this.groupBoxPathConfig = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.path = new System.Windows.Forms.TextBox();
             this.buttonSearchPath = new System.Windows.Forms.Button();
+            this.path = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.menu.SuspendLayout();
             this.configPanel.SuspendLayout();
@@ -108,10 +107,9 @@
             this.buttonMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMenu.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonMenu.Location = new System.Drawing.Point(553, 3);
+            this.buttonMenu.Location = new System.Drawing.Point(632, 3);
             this.buttonMenu.Name = "buttonMenu";
-            this.buttonMenu.Padding = new System.Windows.Forms.Padding(64, 0, 0, 0);
-            this.buttonMenu.Size = new System.Drawing.Size(183, 40);
+            this.buttonMenu.Size = new System.Drawing.Size(91, 40);
             this.buttonMenu.TabIndex = 0;
             this.buttonMenu.Text = "Menu";
             this.buttonMenu.UseVisualStyleBackColor = true;
@@ -132,7 +130,6 @@
             // 
             this.menu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.menu.BackColor = System.Drawing.Color.DarkOrange;
-            this.menu.Controls.Add(this.buttonLogin);
             this.menu.Controls.Add(this.buttonLogs);
             this.menu.Controls.Add(this.buttonUpdate);
             this.menu.Controls.Add(this.buttonCheck);
@@ -158,20 +155,6 @@
             this.buttonLogs.UseVisualStyleBackColor = true;
             this.buttonLogs.Click += new System.EventHandler(this.buttonLogs_Click);
             // 
-            // buttonLogin
-            // 
-            this.buttonLogin.BackColor = System.Drawing.Color.SeaGreen;
-            this.buttonLogin.FlatAppearance.BorderSize = 0;
-            this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogin.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLogin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonLogin.Location = new System.Drawing.Point(3, 353);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(241, 34);
-            this.buttonLogin.TabIndex = 4;
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = false;
-            // 
             // buttonUpdate
             // 
             this.buttonUpdate.FlatAppearance.BorderSize = 0;
@@ -184,6 +167,7 @@
             this.buttonUpdate.TabIndex = 3;
             this.buttonUpdate.Text = "Update";
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // buttonCheck
             // 
@@ -197,6 +181,7 @@
             this.buttonCheck.TabIndex = 2;
             this.buttonCheck.Text = "Check";
             this.buttonCheck.UseVisualStyleBackColor = true;
+            this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
             // 
             // buttonConfig
             // 
@@ -214,11 +199,11 @@
             // 
             // configPanel
             // 
-            this.configPanel.BackColor = System.Drawing.Color.DarkOrange;
+            this.configPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.configPanel.Controls.Add(this.groupBoxPathConfig);
-            this.configPanel.Location = new System.Drawing.Point(3, 60);
+            this.configPanel.Location = new System.Drawing.Point(0, 60);
             this.configPanel.Name = "configPanel";
-            this.configPanel.Size = new System.Drawing.Size(547, 390);
+            this.configPanel.Size = new System.Drawing.Size(556, 390);
             this.configPanel.TabIndex = 2;
             this.configPanel.Visible = false;
             this.configPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.configPanel_MouseDown);
@@ -236,22 +221,6 @@
             this.groupBoxPathConfig.TabStop = false;
             this.groupBoxPathConfig.Text = "Path Configuration";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Path to the mb_warband.exe";
-            // 
-            // path
-            // 
-            this.path.Location = new System.Drawing.Point(10, 39);
-            this.path.Name = "path";
-            this.path.Size = new System.Drawing.Size(449, 20);
-            this.path.TabIndex = 1;
-            // 
             // buttonSearchPath
             // 
             this.buttonSearchPath.Location = new System.Drawing.Point(465, 39);
@@ -260,6 +229,23 @@
             this.buttonSearchPath.TabIndex = 2;
             this.buttonSearchPath.Text = ". . .";
             this.buttonSearchPath.UseVisualStyleBackColor = true;
+            this.buttonSearchPath.Click += new System.EventHandler(this.buttonSearchPath_Click);
+            // 
+            // path
+            // 
+            this.path.Location = new System.Drawing.Point(10, 39);
+            this.path.Name = "path";
+            this.path.Size = new System.Drawing.Size(449, 20);
+            this.path.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Path to the mb_warband.exe";
             // 
             // PhoenixLauncher
             // 
@@ -277,6 +263,7 @@
             this.Name = "PhoenixLauncher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PhoenixLauncher";
+            this.Shown += new System.EventHandler(this.PhoenixLauncher_Shown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PhoenixLauncher_MouseDown);
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
@@ -294,10 +281,6 @@
         private System.Windows.Forms.Panel menu;
         private System.Windows.Forms.Button buttonMenu;
         private System.Windows.Forms.Button buttonClose;
-        private System.Windows.Forms.Button buttonConfig;
-        private System.Windows.Forms.Button buttonLogin;
-        private System.Windows.Forms.Button buttonUpdate;
-        private System.Windows.Forms.Button buttonCheck;
         private System.Windows.Forms.Button buttonLogs;
         public System.Windows.Forms.RichTextBox Console;
         public System.Windows.Forms.Label Headline;
@@ -307,6 +290,9 @@
         private System.Windows.Forms.Button buttonSearchPath;
         private System.Windows.Forms.TextBox path;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button buttonConfig;
+        public System.Windows.Forms.Button buttonUpdate;
+        public System.Windows.Forms.Button buttonCheck;
     }
 }
 

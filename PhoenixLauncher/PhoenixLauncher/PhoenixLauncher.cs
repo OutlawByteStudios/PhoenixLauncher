@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PhoenixLauncher
@@ -13,10 +15,11 @@ namespace PhoenixLauncher
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        private RoutineController routineController;
+
         public PhoenixLauncher()
         {
             InitializeComponent();
-            new StartupController(this);
         }
 
         private void buttonMenu_Click(object sender, EventArgs e)
@@ -53,11 +56,14 @@ namespace PhoenixLauncher
         {
             if (configPanel.Visible)
             {
+                buttonConfig.BackColor = Color.DarkOrange;
                 configPanel.Visible = false;
             }
             else
             {
+                buttonConfig.BackColor = Color.Orange;
                 configPanel.Visible = true;
+                path.Text = ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH);
             }
         }
 
@@ -113,6 +119,42 @@ namespace PhoenixLauncher
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void buttonSearchPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            var tryPath = ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH) != null ? ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH) : "C:\\";
+
+            openFileDialog1.InitialDirectory = tryPath;
+            openFileDialog1.Filter = "Warband Executeable (*.exe)|mb_warband.exe";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ConfigurationService.write(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH, Path.GetDirectoryName(openFileDialog1.FileName).Replace('\\','/'));
+                path.Text = ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH);
+                Logger tmp = new Logger(Console);
+                tmp.success("New path @" + Path.GetDirectoryName(openFileDialog1.FileName).Replace('\\', '/'));
+                tmp = null;
+            }
+        }
+
+        private void PhoenixLauncher_Shown(object sender, EventArgs e)
+        {
+            this.routineController = new RoutineController(this);
+        }
+
+        private void buttonCheck_Click(object sender, EventArgs e)
+        {
+             this.routineController.fileCheck();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            this.routineController.download();
         }
     }
 }

@@ -10,7 +10,11 @@ namespace PhoenixLauncher
     {
         class Launcher
         {
-            public const string VERSION = "0.7.0";
+            public const string VERSION = "0.7.1";
+            public const string UPDATER_EXECUTABLE = "Updater.exe";
+
+            public const string MB_EXECUTEABLE = "mb_warband.exe";
+            public const string APP_CONFIG_EXECUTEABLE_PATH = "MB_EXEC";
         }
 
         class API
@@ -47,9 +51,9 @@ namespace PhoenixLauncher
 
 
             //HTTP 1.0 /GET
-            public const string FILESLAVE_HASHES_FILEPOINTER = "/filelis";
+            public const string FILESLAVE_GET_PACKAGE = "/repository/getPackage";
             //HTTP 1.0 /GET
-            public const string FILESLAVE_DOWNLOAD = "/file";
+            public const string FILESLAVE_DOWNLOAD = "/repository/file";
 
             //HTTP 1.0 /GET
             public const string LAUNCHER_VERSION = "/launcher/version";
