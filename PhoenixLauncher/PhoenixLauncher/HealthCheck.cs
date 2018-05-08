@@ -26,10 +26,10 @@ namespace PhoenixLauncher
         public async Task run()
         {
             //Check for autoupdater
-            if ( !File.Exists("Updater.exe") )
+            if ( !File.Exists(Config.Launcher.UPDATER_EXECUTABLE) )
             {
                 this.LoggerRef.warn("No valid Autoupdater instance was found for the Launcher. The Autoupdater will be downloaded now.");
-                await this.phoenixClient.download(Config.API.URI + Config.API.VERSION + Config.API.AUTOUPDATER_DOWNLOAD,Config.Launcher.UPDATER_EXECUTABLE);
+                await this.phoenixClient.download(Config.API.URI + Config.API.VERSION + Config.API.AUTOUPDATER_DOWNLOAD, Config.Launcher.UPDATER_EXECUTABLE, false);
                 this.LoggerRef.success("Updater Downloaded.");
             };
 

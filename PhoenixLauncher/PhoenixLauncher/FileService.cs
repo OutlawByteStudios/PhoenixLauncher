@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -29,9 +30,13 @@ namespace PhoenixLauncher
         public async Task getHashes()
         {
             this.requireFiles.Clear();
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             await this.phoenixClient.get(Config.API.URI + Config.API.VERSION + Config.API.FILESLAVE_GET_PACKAGE + "/Persistent Kingdoms");
             this.response = JSON.DeserializeObject(this.phoenixClient.getResponse());
             this.response = this.response["message"];
+            stopWatch.Stop();
+            Debug.WriteLine("Download took " + stopWatch.Elapsed);
         }
 
         public int getRequiredFileCount()
@@ -47,20 +52,22 @@ namespace PhoenixLauncher
                 Directory.CreateDirectory(path + "/Modules/" + "Persistent Kingdoms");
             }
 
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             foreach (var HashTuple in response)
             {
+                //Console.Invoke(new Action(() => { this.logger.notify("Checking file: " + path + "/Modules/" + HashTuple[0]) }));
+                
                 try
                 {
                     if (File.Exists(path + "/Modules/" + HashTuple[0]))
                     {
-                        if (!HashTuple[0].Contains("package.json"))
-                        {
-                            string clientSHA512 = this.GetChecksum(path + "/Modules/" + HashTuple[0]);
-                            if (!clientSHA512.Equals(HashTuple[1], StringComparison.CurrentCultureIgnoreCase))
+                        
+                            string clientHash = this.GetChecksum(path + "/Modules/" + HashTuple[0]);
+                            if (!clientHash.Equals(HashTuple[1], StringComparison.CurrentCultureIgnoreCase))
                             {
                                 this.requireFiles.Add(HashTuple[0]);
                             }
-                        }
                     }
                     else
                     {
@@ -72,14 +79,17 @@ namespace PhoenixLauncher
                     MessageBox.Show("error @ " + path + "/Modules/" + HashTuple[0] + "\n" + e.Message, "error");
                 }
             }
+            stopWatch.Stop();
+            Debug.WriteLine("Hashing and comparing took " + stopWatch.Elapsed);
         }
 
         private string GetChecksum(string file)
         {
             using (FileStream stream = File.OpenRead(file))
             {
-                var sha = new SHA512Managed();
-                byte[] checksum = sha.ComputeHash(stream);
+                //var sha = new SHA1Managed();
+                var md5 = MD5.Create();
+                byte[] checksum = md5.ComputeHash(stream);
                 return BitConverter.ToString(checksum).Replace("-", String.Empty);
             }
         }

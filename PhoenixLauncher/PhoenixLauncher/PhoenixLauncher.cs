@@ -20,6 +20,7 @@ namespace PhoenixLauncher
         public PhoenixLauncher()
         {
             InitializeComponent();
+            //CheckForIllegalCrossThreadCalls = false;
         }
 
         private void buttonMenu_Click(object sender, EventArgs e)
