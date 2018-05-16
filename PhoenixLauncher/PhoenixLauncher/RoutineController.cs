@@ -86,14 +86,22 @@ namespace PhoenixLauncher
 
         public async Task download()
         {
-            this.MainForm.buttonCheck.Enabled = false;
-            this.MainForm.buttonUpdate.Enabled = false;
-            this.progress.setup();
-            this.progress.setMax(FS.getRequiredFileCount());
-            await this.FS.downloadAsync(this.progress);
-            this.logger.success("Mod was downloaded!");
-            this.MainForm.buttonCheck.Enabled = true;
-            this.MainForm.buttonUpdate.Enabled = true;
+            if (ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH) == null || ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH) == "")
+            {
+                logger.error("Please set the M&B Warband path in order to download. Menu -> Config -> Path");
+
+            }
+            else
+            {
+                this.MainForm.buttonCheck.Enabled = false;
+                this.MainForm.buttonUpdate.Enabled = false;
+                this.progress.setup();
+                this.progress.setMax(FS.getRequiredFileCount());
+                await this.FS.downloadAsync(this.progress);
+                this.logger.success("Mod was downloaded!");
+                this.MainForm.buttonCheck.Enabled = true;
+                this.MainForm.buttonUpdate.Enabled = true;
+            }
         }
     }
 }
