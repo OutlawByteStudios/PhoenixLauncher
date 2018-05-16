@@ -10,7 +10,7 @@ namespace PhoenixLauncher
     {
         class Launcher
         {
-            public const string VERSION = "0.7.1";
+            public const string VERSION = "0.7.2";
             public const string UPDATER_EXECUTABLE = "Updater.exe";
 
             public const string MB_EXECUTEABLE = "mb_warband.exe";
