@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -156,6 +157,28 @@ namespace PhoenixLauncher
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             this.routineController.download();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(@ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH));
+            }catch (Exception)
+            {
+                Logger logger = new Logger(this.Console);
+                logger.error("You have to set the path to your mb_warband.exe in Menu->Config->Path");
+            }
+        }
+
+        private void buttonLaunch_Click(object sender, EventArgs e)
+        {
+            try { 
+            ProcessStartInfo StartInformation = new ProcessStartInfo();
+            StartInformation.FileName = ConfigurationService.get(Config.Launcher.APP_CONFIG_EXECUTEABLE_PATH) + "/" +Config.Launcher.MB_EXECUTEABLE;
+            Process process = Process.Start(StartInformation);
+            process.EnableRaisingEvents = true;
+            } catch ( Exception exp ) { Debug.WriteLine(exp.Message);  }
         }
     }
 }

@@ -36,6 +36,7 @@
             this.buttonMenu = new System.Windows.Forms.Button();
             this.Console = new System.Windows.Forms.RichTextBox();
             this.menu = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonLogs = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonCheck = new System.Windows.Forms.Button();
@@ -107,7 +108,7 @@
             this.buttonMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMenu.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonMenu.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonMenu.Location = new System.Drawing.Point(632, 3);
+            this.buttonMenu.Location = new System.Drawing.Point(632, 5);
             this.buttonMenu.Name = "buttonMenu";
             this.buttonMenu.Size = new System.Drawing.Size(91, 40);
             this.buttonMenu.TabIndex = 0;
@@ -130,6 +131,7 @@
             // 
             this.menu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.menu.BackColor = System.Drawing.Color.DarkOrange;
+            this.menu.Controls.Add(this.button1);
             this.menu.Controls.Add(this.buttonLogs);
             this.menu.Controls.Add(this.buttonUpdate);
             this.menu.Controls.Add(this.buttonCheck);
@@ -140,6 +142,20 @@
             this.menu.TabIndex = 0;
             this.menu.Visible = false;
             this.menu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menu_MouseDown);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.Location = new System.Drawing.Point(3, 175);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(241, 37);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Warband Folder";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonLogs
             // 
@@ -293,6 +309,7 @@
         public System.Windows.Forms.Button buttonConfig;
         public System.Windows.Forms.Button buttonUpdate;
         public System.Windows.Forms.Button buttonCheck;
+        private System.Windows.Forms.Button button1;
     }
 }
 
